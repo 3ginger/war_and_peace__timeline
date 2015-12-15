@@ -1,0 +1,322 @@
+@require '~rupture/rupture/index'
+@require './fonts.styl'
+
+base_font = 16px
+warColor = #0000FF
+peaceColor = #00E192
+
+body
+    font-family 'PTSansCaptionRegular', sans-serif
+    font-size: base_font
+    width 100%
+    height 100%
+    position: fixed
+    margin 0
+    padding 0
+    left 0
+    top 0
+
+*
+  position relative
+  box-sizing border-box
+
+#content
+    width 100%
+    height 100%
+    background-image url('~_images/Romb1.png'), url('~_images/Romb2.png')
+    background-position: left center, right center
+    background-repeat: no-repeat, no-repeat
+
+.scroll-vol-left
+    background: url('~_svg/left-arrow.svg')
+.scroll-vol-right
+    background: url('~_svg/right-arrow.svg')
+
+.hide-date-point-texts
+.show-date-point-texts
+    cursor pointer
+    font-size 10px
+    vertical-align: middle
+    color #666666
+    &.hidden
+        display: none
+
+.scroll-vol-left
+.scroll-vol-right
+    cursor pointer
+    background-size: 7.1px 11.4px
+    display inline-block
+    width 7.1px
+    height 11.4px
+    vertical-align: middle
+    margin-right 5px
+    margin-top: -2.5px
+
+.scroll-vol-right
+    margin-right 0
+    margin-left: 5px
+
+.vol-controls
+    .scroll-vol-left
+    .scroll-vol-right
+    .vol-name
+        display inline-block
+        vertical-align: middle
+
+.scroll-chapter-up
+    background: url('~_svg/up-arrow.svg')
+    margin-top: -5px
+.scroll-chapter-down
+    background: url('~_svg/down-arrow.svg')
+    margin-top: 5px
+
+.scroll-chapter-up
+.scroll-chapter-down
+    cursor pointer
+    background-size: 50px 50px
+    width: 36px
+    height: 20px
+    background-position: center;
+    position absolute
+    right 37px
+    top 0
+    opacity .5
+    transition opacity .3s
+    &:hover
+        opacity 1
+
+.vol-name
+.part-name
+    font-family 'OranienbaumRegular', sans-serif
+    font-size 23px
+
+.decorate-delimiter
+    background: url('~_svg/tilda.svg')
+    width 19px
+    height 12px
+    background-size: 19px 12px
+    margin: 4px auto
+
+.part-controls
+    padding-bottom 20px
+
+.vand-header
+    text-align center
+
+w_info = 440px
+w_timeline = 400px
+w_timeline_small = 340px
+w_content = w_info*2+w_timeline
+.vand-main-controls
+    max-width: w_content
+    margin 0 auto
+    .text-buttons
+        padding-left: 50px
+        padding-bottom 10px
+        max-width: w_timeline
+        width: (w_timeline/w_content * 100)%
+        margin: 0 auto
+    +below(1024px)
+        .text-buttons
+            min-width: w_timeline_small
+
+.vand-main
+    margin: 0 auto
+    text-align: center
+    font-size 0
+    overflow hidden
+    max-width: w_content
+    &__part
+    &__info
+    &__timeline
+        font-size base_font
+    &__part
+        display inline-block
+        vertical-align: top
+        height 640px
+    &__info
+        max-width: w_info
+        width: (w_info/w_content * 100)%
+        z-index 1000
+        overflow hidden
+        .wrapper
+            overflow-y auto
+            overflow-x hidden
+            padding-right: 10px
+            left: 10px;
+            margin-left: -10px
+    &__timeline
+        max-width: w_timeline
+        width: (w_timeline/w_content * 100)%
+    +below(1024px)
+        &__info
+            display block
+            position: absolute
+            &.book
+                right 0
+                top 0
+            &.history
+            &.book
+                width calc((100% - 340px)/2)
+        &__timeline
+            min-width: w_timeline_small
+
+.event
+    padding: 0 20px
+    text-align: left
+    &__read
+    &__title
+        font-weight bold
+        line-height 24px
+    &__title
+        font-size 18px
+    &__text
+        padding-bottom: 10px
+    &__read
+        color #666666
+        margin-top 40px
+        margin-bottom 10px
+        font-size 10px
+    &__url
+        text-decoration: none
+        color #666666
+    &.hidden
+        display: none
+
+.book__event
+    .event__text
+        line-height 26px
+        font-family 'PTSerifBoldItalic', sans-serif
+        &:before
+            content: '«'
+        &:after
+            content: '»'
+
+.history__event
+    .event__text
+        font-size 14px
+        line-height 22px
+        font-family 'PTSansCaptionRegular', sans-serif
+
+.history
+.book
+    /*&:after
+        width 10px
+        height 100%
+        background-color: white
+        position: absolute
+        right 0
+        top 0
+        content ''*/
+    &__title
+        padding-left 20px
+        text-align: left
+
+.watermark
+    font 125px/120px 'OranienbaumRegular', sans-serif
+    opacity .12
+    position: absolute
+    top 10px
+    left 0
+    text-align: left
+
+.svg-timeline-years
+    position: absolute;
+    right: 0;
+    margin-right: 100%;
+
+.svg-timeline-years
+.svg-timeline
+    width 100%
+    font-family 'OranienbaumRegular', sans-serif
+    .part-delemiter
+    .year-delemiter
+        stroke: black
+        stroke-width: 1px
+    .year-delemiter
+        opacity .3
+    .part-title
+        font-size 11px
+        line-height 16px
+        font-family 'PTSansRegular', sans-serif
+    .part-title
+    .year-title
+        fill: black
+        stroke: none
+        stroke-width: 0
+        font-size: 15px
+        opacity .3
+        &.active
+            opacity: 1
+    .year-title
+        opacity .12
+        font-size 90px
+        transition font-size .3s
+
+    .year.active
+        .year-title
+            font-size 220px
+
+    .date-box-wrapper-rect
+        opacity 0
+        transition opacity .2s
+        &.active
+            opacity .3
+    .date-box
+    .date-text
+        fill: #808080
+        stroke: none
+        stroke-width: 0
+        transition fill .3s, opacity .3s
+    .date-text
+        font-size 11px
+        font-family 'PTSansCaptionRegular', sans-serif
+        opacity 1
+        &.hidden
+            opacity 0
+    .event-link
+        stroke-width: 0
+        stroke: none
+        opacity .3
+        fill: peaceColor
+        &.war
+            opacity: .2
+            fill: warColor
+    .chapter
+        opacity .1
+        &__roman-index
+            font-size 13px
+            font-family 'PTSerifRegular', sans-serif
+            fill white
+        &__rect
+            fill: peaceColor
+        &_war .chapter__rect
+            fill: warColor
+        &_clickable
+            opacity .4
+            cursor pointer
+        &.active
+            opacity .9
+    .grid-link
+        fill: none
+        stroke: black
+        opacity: .05
+        stroke-width: 1px
+    .shadow-event-link
+        stroke peaceColor
+        stroke-width 2px
+        fill none
+        opacity .2
+        &.war
+            stroke warColor
+    .date
+        cursor pointer
+        &:hover
+            fill black
+            opacity .5
+        &.active
+            .date-box
+                fill: black
+            .date-text
+                fill: black
+                opacity 1

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html{% if(o.htmlWebpackPlugin.files.manifest) { %} manifest="{%= o.htmlWebpackPlugin.files.manifest %}"{% } %} lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="The infographic about «War and Peace» by Lev Tolstoy">
+    <meta name="keywords" content="war and peace, 3ginger, vgtrk, ВГТРК">
+    <meta name="author" content="German Gurov">
+
+    <title>{%=o.htmlWebpackPlugin.options.title || 'sitmybaby.ru'%}</title>
+
+    {% for (var css in o.htmlWebpackPlugin.files.css) { %}
+      <link href="{%=o.htmlWebpackPlugin.files.css[css] %}" rel="stylesheet">
+    {% } %}
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <!--[if IE]>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/es5-shim/4.1.7/es5-shim.min.js"></script>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/classlist/2014.01.31/classList.min.js"></script>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/selectivizr/1.0.2/selectivizr-min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div id="content">
+      <header class='vand-header'>
+        <div class="vol-controls">
+          <div class="vol-name"></div>
+        </div>
+        <div class="decorate-delimiter"></div>
+        <div class="part-controls">
+          <div class="part-name"></div>
+        </div>
+      </header>
+      <div class='vand-main-controls'>
+        <div class="text-buttons">
+          <div class="hide-date-point-texts">Скрыть названия событий</div>
+          <div class="show-date-point-texts hidden">Показать названия событий</div>
+          <div class="scroll-chapter-up"></div>
+        </div>
+      </div>
+      <main class='vand-main'>
+        <div id="history" class="history vand-main__part vand-main__info">
+          <div class="history__title">История</div>
+          <div class="wrapper"></div>
+        </div>
+        <div id="timeline" class="timeline vand-main__part vand-main__timeline">
+          <div class="wrapper">
+            <svg class="svg-timeline-years">
+              <g class="year-timeline">
+                <g class="years"></g>
+              </g>
+            </svg>
+            <svg class="svg-timeline">
+              <defs>
+                <linearGradient id="rect-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" style="stop-color:rgb(0,0,255);stop-opacity:.5" />
+                  <stop offset="100%" style="stop-color:rgb(0,225,146);stop-opacity:.5" />
+                </linearGradient>
+              </defs>
+              <g class="svg-timeline-wrapper">
+                <g class="grid-links">
+                  <g class="links">
+                  </g>
+                </g>
+                <g class="shadow-event-links">
+                  <g class="links">
+                  </g>
+                </g>
+                <g class="event-links">
+                  <g class="links">
+                    <path class="event-link"></path>
+                  </g>
+                </g>
+                <g class="history-group" transform="translate(0,0)">
+                  <g class="year-timeline">
+                    <g class="years"></g>
+                  </g>
+                  <g class="history-timeline">
+                    <g class="dates"></g>
+                  </g>
+                </g>
+                <g class="book-timeline">
+                  <g class="vols"></g>
+                </g>
+              </g>
+            </svg>
+          </div>
+        </div>
+        <div id="book" class="book vand-main__part vand-main__info">
+          <div class="watermark">
+            <div class="watermark__vol"></div>
+            <div class="watermark__part"></div>
+          </div>
+          <div class="history__title">Роман</div>
+          <div class="wrapper"></div>
+        </div>
+      </main>
+      <div class='vand-main-controls'>
+        <div class="text-buttons">
+          <div class="scroll-chapter-down"></div>
+        </div>
+      </div>
+    </div>
+    {% for (var chunk in o.htmlWebpackPlugin.files.chunks) { %}
+      <script src="{%=o.htmlWebpackPlugin.files.chunks[chunk].entry %}"></script>
+    {% } %}
+  </body>
+</html>
