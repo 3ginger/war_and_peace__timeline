@@ -30,7 +30,7 @@
     "less": "^2.5.1",
     "less-loader": "^2.2.0",
     "load-image": "^1.0.0",
-    "lodash": "^3.7.0",
+    "lodash": "^4.17.19",
     "manifest-revision-webpack-plugin": "0.0.5",
     "material-design-icons": "^2.0.0",
     "node-sass": "^3.2.0",
